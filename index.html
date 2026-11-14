@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MindMate</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #edf2ff;
+    text-align: center;
+}
+
+.box {
+    background: white;
+    width: 320px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+input {
+    padding: 10px;
+    margin: 8px;
+    width: 85%;
+}
+
+button {
+    background: #5145cd;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.task {
+    background: #e0e7ff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🧠 MindMate</h1>
+<p>Study Smart, Not Hard!</p>
+
+<h3>Add Study Subject</h3>
+
+<input id="subject" placeholder="Enter Subject">
+
+<input id="time" type="number"
+placeholder="Study Time (Minutes)">
+
+<button onclick="addTask()">Add Subject</button>
+
+<h3>My Study Plan</h3>
+
+<div id="tasks"></div>
+
+<h3 id="total">Total Study Time: 0 Minutes</h3>
+
+</div>
+
+<script>
+
+let total = 0;
+
+function addTask() {
+
+let subject = document.getElementById("subject").value.trim();
+
+let time = Number(document.getElementById("time").value);
+
+if(subject === "" || !Number.isFinite(time) || time <= 0) {
+alert("Enter Valid Details!");
+return;
+}
+
+total += time;
+
+let task = document.createElement("div");
+
+task.className = "task";
+
+task.innerHTML =
+"<b>" + subject + "</b><br>" +
+"Study Time: " + time + " Minutes";
+
+document.getElementById("tasks").appendChild(task);
+
+document.getElementById("total").innerText =
+"Total Study Time: " + total + " Minutes";
+
+document.getElementById("subject").value = "";
+document.getElementById("time").value = "";
+
+}
+
+</script>
+
+</body>
+</html>
